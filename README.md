@@ -6,7 +6,23 @@ The story: a customer receives an RSA-signed login token, approves an ECDSA-sign
 
 The application verifier exercises these operations together. These are source fixtures rather than deployed HTTP microservices. The gateway is a separate loopback HTTPS health endpoint for collecting real TLS evidence.
 
-## Run the banking scenario
+## Scan this remote repository
+
+In QCipher, select a project and a **repository** asset, open **Python source scan → GitHub repository**, and enter:
+
+```text
+https://github.com/QCipher-Labs/qcipher-demo-bank
+```
+
+Leave **Branch, tag or commit** empty and click **Start scan**. QCipher downloads the default branch from GitHub and scans its Python source. The URL is all you need for source discovery.
+
+Inspect the findings by source path, build a CBOM, and continue to the assessment and migration workflow. The repository contains RSA login signatures, ECDSA payment and rates signatures, Ed25519 release signing, AES-GCM statement encryption, RSA-OAEP key wrapping, TLS configuration, and SHA-256 hashing. Hashing in verification and maintenance scripts is also part of a whole-repository scan.
+
+Use `services/release_signer/crypto.py` for the supported Ed25519-to-ML-DSA-65 source-change demo. Use `services/statement_archive/crypto.py` to explain why the data-key wrapping matters even when the statement content uses AES-256.
+
+The optional sections below add application execution, individual service ownership, CMDB context and live TLS collection to the remote source scan.
+
+## Optional: run the banking scenario locally
 
 Use Python 3.12 or later:
 
@@ -21,9 +37,9 @@ python verification/exercise.py --output evidence/application-baseline.json
 
 The verifier performs **12 checks**, including token/payment/archive/release round trips, tamper rejection, and rejection of a public-rates signature under the payment service's different key. Keys are generated in memory for each run.
 
-## Scan directly from GitHub in QCipher
+## Optional: separate service assets and CMDB context
 
-Create the two projects and six assets listed in [the CMDB import guide](docs/cmdb.md). In each asset's Python source scan, enter:
+For a demo of individual service ownership and business context, create the two projects and six assets listed in [the CMDB import guide](docs/cmdb.md). The per-service branches below are an additional scoping option. In each asset's Python source scan, enter:
 
 **Repository:** `https://github.com/QCipher-Labs/qcipher-demo-bank`
 
@@ -38,11 +54,11 @@ Create the two projects and six assets listed in [the CMDB import guide](docs/cm
 | Customer Payments | Payment Release Signer | `scan/release_signer` | Ed25519 release signatures; candidate change to ML-DSA-65 |
 | Public Market Data | Public Market Rates Service | `scan/public_rates` | ECDSA / P-256 with an independent key |
 
-Each scan branch contains only that service's source and a description. Scanning `main` discovers the entire repository, including verification helpers; it does not establish which individual asset uses every finding. Use the service branches for asset-scoped CMDB enrichment.
+Each scan branch contains only that service's source and a description. The default-branch scan above discovers the entire repository in one repository asset. Use the service branches when you want to associate a separate CMDB record with each service asset. Repository membership alone does not establish runtime relationships between services.
 
 Save the scan's CBOM, import it into the same asset, import the matching one-row CMDB CSV, review and confirm the context link, then **reassess**. Inspect the graph, algorithm assessment, declared business context, migration work items and exports. The ten-year archive and public-but-integrity-critical release signer make the confidentiality/authenticity distinction visible.
 
-## Collect real TLS evidence
+## Optional: collect real TLS evidence
 
 Start the endpoint **on the machine running the QCipher collector**:
 

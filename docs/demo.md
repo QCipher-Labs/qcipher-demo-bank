@@ -4,13 +4,13 @@ Opening: **“Which cryptography protects the bank's payments and ten-year state
 
 ## 1. Establish the scenario
 
-Show the two projects. Customer Payments contains the gateway, identity, payment, archive and release-signing assets. Public Market Data contains the unrelated rates service. Explain that organisational scope and a shared ECDSA algorithm do not establish a dependency between them.
+Start with a project and a repository asset named `qcipher-demo-bank`. Explain the source layout: gateway, identity, payment, statement archive, release signer and an unrelated public-rates service. A shared repository or ECDSA algorithm does not establish an operational dependency.
 
-Run `python verification/exercise.py`. It executes a synthetic token, payment, statement encryption/decryption, release verification and public-rates signature. The negative checks reject changed data and the wrong verification key. These are application-level checks, separately performed from the platform's static scan.
+Optionally run `python verification/exercise.py` from a local clone to demonstrate execution. It exercises a synthetic token, payment, statement encryption/decryption, release verification and public-rates signature. The negative checks reject changed data and the wrong verification key. The remote source scan itself needs only the repository URL.
 
 ## 2. Discover source cryptography
 
-Scan the branches from the README into their matching assets, using the pinned commit for reproducibility. Save and inspect CBOMs and source locations.
+In **Python source scan → GitHub repository**, paste `https://github.com/QCipher-Labs/qcipher-demo-bank`, leave the branch field empty, and start the scan. Show that the result records a GitHub commit and source locations. Inspect the service files below, build a CBOM, and review the assessment. A recorded commit can be used to repeat the exact scan later.
 
 | Service | What the code actually does | Analyst interpretation |
 | --- | --- | --- |
@@ -24,7 +24,7 @@ Key generation alone does not establish the purpose of a key. A literal curve or
 
 ## 3. Add business context
 
-Import and review the per-asset CMDB files, then reassess. Show the archive's recorded owner, Regulated classification and ten-year declared protection period. Contrast it with the release signer's Public artifacts and critical integrity impact.
+This is an optional extension after the whole-repository scan. For individual service context, create the Customer Payments and Public Market Data projects and their service assets using the CMDB guide. Scan the corresponding `scan/*` branches into those assets, import and review their CMDB files, then reassess. Show the archive's recorded owner, Regulated classification and ten-year declared protection period. Contrast it with the release signer's Public artifacts and critical integrity impact. These declarations apply to their named service; do not assign the archive's policy to the entire repository.
 
 Keep declarations distinct from deployed exposure: source identity and a reviewed context link are not proof that every detected call protects all of the declared data. Business severity can remain unassessed while technical vulnerabilities and accountable owners are visible.
 
@@ -42,7 +42,7 @@ Use exact crypto objects, owners and reviewed context to discuss evidence collec
 
 ## 6. Exercise a signing candidate
 
-For `scan/release_signer`, propose the supported Ed25519-to-ML-DSA-65 key-generation edit in the platform. Review, apply and recheck the source, then download the candidate and run:
+Select the Ed25519 key-generation finding in `services/release_signer/crypto.py` from the repository scan and propose the supported ML-DSA-65 edit in the platform. Review, apply and recheck the source, then download the candidate. For optional application validation, use its release-signer file:
 
 ```sh
 python verification/exercise.py --candidate-signer /path/to/candidate/crypto.py --output evidence/application-candidate.json
