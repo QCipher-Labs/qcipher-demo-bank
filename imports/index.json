@@ -1,0 +1,63 @@
+{
+  "source_family": "cryptograph.inventory.v1",
+  "source_version": "1",
+  "namespace": "urn:northbridge:cmdb:demo:v1",
+  "master_file": "../cmdb.csv",
+  "note": "Import one matching file into each existing asset workspace. This is a reference index, not a bulk-import command.",
+  "imports": [
+    {
+      "project_key": "customer-payments",
+      "project_name": "Customer Payments",
+      "asset_id": "NB-CI-GATEWAY-001",
+      "asset_name": "Customer API Gateway",
+      "asset_type": "service",
+      "owner": "Digital Channels",
+      "file": "by-asset/gateway.csv"
+    },
+    {
+      "project_key": "customer-payments",
+      "project_name": "Customer Payments",
+      "asset_id": "NB-CI-IDENTITY-001",
+      "asset_name": "Customer Identity Service",
+      "asset_type": "service",
+      "owner": "Identity and Access Management",
+      "file": "by-asset/identity.csv"
+    },
+    {
+      "project_key": "customer-payments",
+      "project_name": "Customer Payments",
+      "asset_id": "NB-CI-PAYMENTS-001",
+      "asset_name": "Payment Authorisation Service",
+      "asset_type": "service",
+      "owner": "Payments Engineering",
+      "file": "by-asset/payments.csv"
+    },
+    {
+      "project_key": "customer-payments",
+      "project_name": "Customer Payments",
+      "asset_id": "NB-CI-ARCHIVE-001",
+      "asset_name": "Customer Statement Archive",
+      "asset_type": "database",
+      "owner": "Records and Data Platforms",
+      "file": "by-asset/statement_archive.csv"
+    },
+    {
+      "project_key": "customer-payments",
+      "project_name": "Customer Payments",
+      "asset_id": "NB-CI-RELEASE-001",
+      "asset_name": "Payment Release Signer",
+      "asset_type": "service",
+      "owner": "Platform Security",
+      "file": "by-asset/release_signer.csv"
+    },
+    {
+      "project_key": "public-market-data",
+      "project_name": "Public Market Data",
+      "asset_id": "NB-CI-RATES-001",
+      "asset_name": "Public Market Rates Service",
+      "asset_type": "service",
+      "owner": "Market Data Engineering",
+      "file": "by-asset/public_rates.csv"
+    }
+  ]
+}
