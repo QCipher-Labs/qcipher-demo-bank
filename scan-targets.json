@@ -1,0 +1,60 @@
+{
+  "repository": "https://github.com/QCipher-Labs/qcipher-demo-bank",
+  "source_revision": "8bb58501caf446dd6500497a41f734ce1b3a5a8e",
+  "targets": [
+    {
+      "service": "gateway",
+      "asset_id": "NB-CI-GATEWAY-001",
+      "project_key": "customer-payments",
+      "ref": "scan/gateway",
+      "commit": "9a97039eada18ddb6cdbb84227896e97c03caf1d",
+      "path": "services/gateway/server.py",
+      "source_sha256": "c4b7b816ba4ee44068063e289be8d67f335a8dd9e80230442268ebffe81b4ae3"
+    },
+    {
+      "service": "identity",
+      "asset_id": "NB-CI-IDENTITY-001",
+      "project_key": "customer-payments",
+      "ref": "scan/identity",
+      "commit": "360fb35c34a1d7f959aaaadd0daf84ca2d99cfe9",
+      "path": "services/identity/crypto.py",
+      "source_sha256": "692ed6280c36519ccc798dd9ef292a0585eaeb4d948db7cd14003758782c3365"
+    },
+    {
+      "service": "payments",
+      "asset_id": "NB-CI-PAYMENTS-001",
+      "project_key": "customer-payments",
+      "ref": "scan/payments",
+      "commit": "ca1576201b8ed8bd92fa95be836bf7b552e9b06b",
+      "path": "services/payments/crypto.py",
+      "source_sha256": "c83e45a9410730f1a0df06be73a8d91303ee882d40e52d196186f17a2bcb76f5"
+    },
+    {
+      "service": "statement_archive",
+      "asset_id": "NB-CI-ARCHIVE-001",
+      "project_key": "customer-payments",
+      "ref": "scan/statement_archive",
+      "commit": "801f9ade79b160d5c0769671c9365f1b637242f8",
+      "path": "services/statement_archive/crypto.py",
+      "source_sha256": "0852cb94cfc1a012bb25c807374f4c5213803d6431389f82574d159b030ea713"
+    },
+    {
+      "service": "release_signer",
+      "asset_id": "NB-CI-RELEASE-001",
+      "project_key": "customer-payments",
+      "ref": "scan/release_signer",
+      "commit": "24ab0dd471ef7f29e164d8c09914fa3d5245eeca",
+      "path": "services/release_signer/crypto.py",
+      "source_sha256": "ed247bd1861133c27b8926ee1fe98e8f33b37fa54bf4153b455e201075df73ad"
+    },
+    {
+      "service": "public_rates",
+      "asset_id": "NB-CI-RATES-001",
+      "project_key": "public-market-data",
+      "ref": "scan/public_rates",
+      "commit": "fc6f0c39a5c2d45a89eac807d693e44430a8efa1",
+      "path": "services/public_rates/crypto.py",
+      "source_sha256": "3dc6d855df4016b6ae98be8f56b95ca1e16789a3b78dc934538b2cd9c5799106"
+    }
+  ]
+}
